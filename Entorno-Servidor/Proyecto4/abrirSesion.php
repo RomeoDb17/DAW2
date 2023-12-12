@@ -5,18 +5,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $usuario = $_POST["usuario"];
     $contrasena = $_POST["contrasena"];
 
-    // Verify the user using verifyUser
-    if (verifyUser($usuario, $contrasena)) {
-        // Correct password, start the session
-        // and redirect to the application page
-        session_start();
-        $_SESSION["usuario"] = $usuario;
-        $_SESSION["horaInicio"] = date("Y-m-d H:i:s");
-        header("Location: aplicacion.php");
-        exit(); // Important: ensure to exit after the redirect
+    $usuarioData = obtenerUsuario($usuario);
+
+    if ($usuarioData) {
+        if (verificarContrasena($contrasena, $usuarioData["pwd"])) {
+            crearSesion($usuarioData);
+            header("Location: aplicacion.php");
+        } else {
+            echo "Contraseña incorrecta. Contraseña ingresada: $contrasena, Contraseña almacenada: " . $usuarioData["pwd"];
+        }
     } else {
-        // Incorrect username or password
-        echo "Usuario o contraseña incorrectos";
+        echo "Usuario no encontrado: $usuario";
     }
+
+
+
 }
-?>
