@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EJ3 - API</title>
+</head>
+<body>
+<h1>Información de Geolocalización IP</h1>
+<div id="geo-info"></div>
+
+<script>
+window.onload = function() {
+  fetch('https://freegeoip.app/json/')
+    .then(response => response.json())
+    .then(data => {
+      const geoInfo = document.getElementById('geo-info');
+      geoInfo.innerHTML = `
+        <p><strong>País:</strong> ${country_name}</p>
+        <p><strong>Ciudad:</strong> ${city}</p>
+        <p><strong>Código Postal:</strong> ${zip_code}</p>
+        <p><strong>IP:</strong> ${ip}</p>
+      `;
+    })
+    .catch(error => {
+      console.error('Error al obtener la información de geolocalización:', error);
+    });
+};
+</script>
+</body>
+</html>

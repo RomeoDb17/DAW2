@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EJ2 - API</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #f0f0f0;
+    }
+
+    h1 {
+        text-align: center;
+        margin-top: 20px;
+    }
+
+    #provinciasList {
+        list-style-type: none;
+        padding: 0;
+        margin: 20px auto;
+        max-width: 600px;
+        background-color: #fff;
+        border-radius: 5px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    #provinciasList li {
+        padding: 20px;
+        border-bottom: 1px solid #ccc;
+    }
+
+    #provinciasList li:last-child {
+        border-bottom: none;
+    }
+
+    strong {
+        color: #333;
+    }
+</style>
+</head>
+<body>
+
+<h1>Provincias de Argentina</h1>
+
+<ul id="provinciasList">
+</ul>
+
+<script>
+    function fetchAndDisplayProvincias() {
+        fetch('https://apis.datos.gob.ar/georef/api/provincias')
+            .then(response => response.json())
+            .then(data => {
+                const provinciasList = document.getElementById('provinciasList');
+                provinciasList.innerHTML = ''; // Limpiar datos anteriores
+
+                data.provincias.forEach(provincia => {
+                    const listItem = document.createElement('li');
+                    listItem.innerHTML = `
+                        <strong>Nombre:</strong> ${provincia.nombre}<br>
+                        <strong>ID:</strong> ${provincia.id}<br>
+                        <strong>Centroide (latitud, longitud):</strong> (${provincia.centroide.lat}, ${provincia.centroide.lon})<br><br>
+                    `;
+                    provinciasList.appendChild(listItem);
+                });
+            })
+            .catch(error => console.error('Error al recuperar datos:', error));
+    }
+
+    document.addEventListener('DOMContentLoaded', fetchAndDisplayProvincias);
+</script>
+
+</body>
+</html>

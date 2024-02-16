@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EJ5 - API</title>
+</head>
+<body>
+<h1>Información de Usuario</h1>
+<div id="userInfo"></div>
+
+<script>
+function obtenerImagen(gender) {
+  return gender === 'male' ? 'hombre.png' : 'mujer.png';
+}
+
+function obtenerDatosUsuario() {
+  fetch('https://randomuser.me/api/')
+    .then(response => response.json())
+    .then(data => {
+      const user = data.results[0];
+      const userInfo = document.getElementById('userInfo');
+      
+      const imagen = obtenerImagen(user.gender);
+
+      userInfo.innerHTML = `
+        <p><strong>Primer Nombre:</strong> ${user.name.first}</p>
+        <p><strong>Segundo Nombre:</strong> ${user.name.last}</p>
+        <p><strong>E-Mail:</strong> ${user.email}</p>
+        <p><strong>Telefono:</strong> ${user.phone}</p>
+        <img src="${user.picture.medium}" alt="Imagen del usuario">
+      `;
+    })
+    .catch(error => {
+      console.error('Error al obtener los datos del usuario:', error);
+    });
+}
+
+window.onload = obtenerDatosUsuario;
+</script>
+</body>
+</html>
