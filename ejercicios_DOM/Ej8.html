@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Ej8</title>
+</head>      
+<body>
+    <p>
+        <label for="valor1">Ingrese primer valor:</label>
+        <input type="number" id="valor1" />
+    </p>
+    <p>
+        <label for="valor2">Ingrese segundo valor:</label>
+        <input type="number" id="valor2" />
+    </p>
+    <p>
+        <select id="operacion">
+            <option value="suma">Sumar</option>
+            <option value="resta">Restar</option>
+        </select>
+    </p>
+    <p>
+        <input type="button" value="Operar" id="calculo" />
+    </p>
+    <p id="resultado1"></p>
+    <select multiple="multiple" id="operaciones">
+        <option value="suma">Sumar</option>
+        <option value="resta">Restar</option>
+    </select>
+    <p>
+        <input type="button" value="Operar" id="calculomultiple" />
+    </p>
+    <p id="resultado2"></p>
+
+    <script>
+        document.getElementById('calculo').addEventListener('click', function() {
+            var valor1 = parseFloat(document.getElementById('valor1').value);
+            var valor2 = parseFloat(document.getElementById('valor2').value);
+
+            var operacionSelect = document.getElementById('operacion');
+            var operacion = operacionSelect.options[operacionSelect.selectedIndex].value;
+
+            var resultado1 = document.getElementById('resultado1');
+            resultado1.textContent = 'Resultado: ' + realizarOperacion(valor1, valor2, operacion);
+        });
+
+        document.getElementById('calculomultiple').addEventListener('click', function() {
+            var valor1 = parseFloat(document.getElementById('valor1').value);
+            var valor2 = parseFloat(document.getElementById('valor2').value);
+
+            var operacionesSelect = document.getElementById('operaciones');
+            var opcionesSeleccionadas = operacionesSelect.selectedOptions;
+
+            var resultado2 = document.getElementById('resultado2');
+            resultado2.textContent = '';
+            for (var i = 0; i < opcionesSeleccionadas.length; i++) {
+                var operacion = opcionesSeleccionadas[i].value;
+                resultado2.textContent += 'Resultado ' + operacion + ': ' + realizarOperacion(valor1, valor2, operacion) + ' ';
+            }
+        });
+
+        function realizarOperacion(valor1, valor2, operacion) {
+            switch (operacion) {
+                case 'suma':
+                    return valor1 + valor2;
+                case 'resta':
+                    return valor1 - valor2;
+                default:
+                    return 'Operación no válida';
+            }
+        }
+    </script>
+</body>
+</html>
