@@ -7,11 +7,24 @@
 .navbar {
     padding: 2rem;
     background-color: #f5f6f7;
+    padding-left: 39.5%;
+    padding-right: 39.5%;
+    display: flex;
   }
   
   .navbar-collapse {
     align-items: center;
     justify-content: space-between;  
+  }
+
+  .navbar li{
+    padding-left: 3%;
+    padding-right: 3%;
+  }
+
+  .navbar-brand {
+    padding-left: 3%;
+    padding-right: 3%;
   }
   
   /* Estilos generales */
@@ -68,7 +81,7 @@
   
   .hero {
     background-color: #f5f6f7;
-    min-height: 450px;
+    min-height: 200px;
     text-align: center;
   }
   
@@ -77,8 +90,8 @@
   }
   
   .hero-imagen-desarrollador {
-    width: 200px;
-    height: 200px;
+    width: 100px;
+    height: 100px;
     margin: 20px;
   }
   
@@ -90,7 +103,7 @@
   /* Sobre mi */
   
   .sobre-mi {
-    height: 500px;
+    height: 200px;
     padding: 10px;
   }
   
@@ -107,17 +120,11 @@
   
   .experiencia .columna {
     padding: 20px;
-    border: 2px solid #8080804d;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: space-evenly;
     transition: all 0.2s ease-in;
-  }
-  
-  .experiencia .columna:hover {
-    color: white;
-    background-color: #1b1b32;
   }
   
   .experiencia i {
@@ -202,23 +209,7 @@
     margin: 10px;
   }
   
-  /* Articulos */
-  
-  .articulos {
-    min-height: 500px;
-    padding: 30px;
-  }
-  
-  .articulos .card {
-    width: 80%;
-    max-width: 600px;
-    margin: 20px;
-  }
-  
-  .articulos .card-header {
-    font-weight: bold;
-  }
-  
+ 
   /* Testimonios */
   
   .testimonios {
@@ -226,7 +217,7 @@
   }
   
   .testimonios .carousel {
-    max-width: 800px;
+    max-width: 600px;
   }
   
   .carousel-item {
@@ -272,62 +263,11 @@
     color: #656060;
   }
   
-  /* Contacto */
-  
-  .contacto .container {
-    max-width: 1100px;
-    min-height: 200px;
-    padding: 20px;
-  }
-  
-  .contacto .rectangulo {
-    margin-top: -5rem;
-    background-color: #4fabf7;
-    border-radius: 10px;
-    box-shadow: 0 1px 4px 1px rgba(255, 255, 255, 0.7);
-  }
-  
-  .contacto .row {
-    width: 100%;
-    display: flex;
-    align-items: center;
-  }
-  
-  .contacto .descripcion {
-    color: white;
-    font-size: 1.2rem;
-  }
-  
-  .contacto button {
-    color: white;
-    font-weight: bold;
-    background-color: transparent;
-    border: 2px solid white;
-    padding: 1.25em 2em;
-    margin: 10px;
-    border-radius: 100px;
-    transition: all 0.2s ease-in-out;
-  }
-  
-  .contacto button:hover {
-    background-color: white;
-    color: black;
-  }
-  
-  .contacto button i {
-    color: white;
-    font-size: 1.3rem;
-    transition: all 0.2s ease-in-out;
-  }
-  
-  .contacto button:hover i {
-    color: black;
-  }
   
   /* Pie de pagina (footer) */
   
   footer {
-    min-height: 500px;
+    min-height: 300px;
   }
   
   .footer-logo {
